@@ -101,13 +101,10 @@ export default function AboutPage() {
               <h2>Vamos conversar</h2>
               <p style={{ color: "var(--text-2)", fontSize: 16 }}>
                 Adoro trocar ideia sobre tecnologia, carreira e produtividade.
-                Me chame por e-mail ou acompanhe as publicações via RSS.
+                Me chame por e-mail ou acompanhe as publicações.
               </p>
               <a className="btn btn--primary" href={`mailto:${site.email}`}>
                 Enviar e-mail
-              </a>{" "}
-              <a className="btn btn--ghost" href="/rss.xml">
-                Assinar RSS
               </a>
             </section>
           </div>

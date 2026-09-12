@@ -1,6 +1,18 @@
+import os from "node:os";
+import path from "node:path";
 import Link from "next/link";
 import Reveal from "@/components/reveal";
+import TerminalHero from "@/components/terminal-hero";
 import { site } from "@/lib/site";
+
+function fmtUptime(sec: number): string {
+  const d = Math.floor(sec / 86400);
+  const h = Math.floor((sec % 86400) / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  return [d ? `${d}d` : "", h ? `${h}h` : "", `${m}m`]
+    .filter(Boolean)
+    .join(" ");
+}
 
 export default function Hero({
   postsCount,
@@ -12,6 +24,17 @@ export default function Hero({
   tags: number;
 }) {
   const host = process.env.HOSTNAME ?? "localhost";
+  const cpus = os.cpus();
+  const platform = os.platform();
+  const arch = os.arch();
+  const release = os.release();
+  const cpu = (cpus[0]?.model ?? "cpu")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 40);
+  const memGiB = Math.round((os.totalmem() / 1024 ** 3) * 10) / 10;
+  const shell = path.basename(process.env.SHELL ?? "zsh");
+  const loadAvg = os.loadavg()[0].toFixed(2);
 
   return (
     <section className="hero">
@@ -20,7 +43,7 @@ export default function Hero({
           <div className="hero__intro">
             <span className="hero__eyebrow">
               <span className="dot" />
-              {site.name}.md — portfólio &amp; blog
+              {site.name}.dev — portfólio &amp; blog
             </span>
 
             <h1 className="hero__title">
@@ -29,9 +52,8 @@ export default function Hero({
             </h1>
 
             <p className="hero__sub">
-              Desenvolvedor de software com foco em interfaces rápidas, código
-              legível e ferramentas de fato úteis ao entregar valor
-              ao negócio. Este é o meu
+              Engenheiro de software com foco em interfaces rápidas, código
+              legível e ferramentas que dão prazer de usar. Este é o meu
               espaço para documentar o que aprendo.
             </p>
 
@@ -49,47 +71,21 @@ export default function Hero({
           </div>
 
           <Reveal delay={120}>
-            <div className="terminal" role="img" aria-label="Demonstração de terminal">
-              <div className="terminal__bar">
-                <span className="traffic traffic--r" />
-                <span className="traffic traffic--y" />
-                <span className="traffic traffic--g" />
-                <span className="terminal__title">bonham@dev — zsh</span>
-              </div>
-              <div className="terminal__body">
-                <div className="terminal__line">
-                  <span className="terminal__prompt">❯</span> <span className="terminal__cmd">whoami</span>
-                </div>
-                <div className="terminal__line">
-                  <span className="key"></span> <span className="val">{site.author}</span>{" "}
-                  <span className="dim">· desenvolvedor de software</span>
-                </div>
-                <div className="terminal__line">
-                  <span className="terminal__prompt">❯</span> <span className="terminal__cmd">hostname</span>
-                </div>
-                <div className="terminal__line">
-                  <span className="val">{host}</span>
-                </div>
-                <div className="terminal__line">
-                  <span className="terminal__prompt">❯</span> <span className="terminal__cmd">stack --status</span>
-                </div>
-                <div className="terminal__line">
-                  <span className="key">lang:</span> <span className="val">TypeScript · Python</span>
-                </div>
-                <div className="terminal__line">
-                  <span className="key">foco:</span> <span className="val">front-end · back-end</span>
-                </div>
-                <div className="terminal__line">
-                  <span className="terminal__prompt">❯</span> <span className="terminal__cmd">uptime</span>
-                </div>
-                <div className="terminal__line">
-                  <span className="val">∞ online</span> <span className="dim">· aberto a colaborações</span>
-                </div>
-                <div className="terminal__line">
-                  <span className="terminal__prompt">❯</span> <span className="terminal__blink" />
-                </div>
-              </div>
-            </div>
+            <TerminalHero
+              author={site.author}
+              host={host}
+              platform={platform}
+              arch={arch}
+              release={release}
+              cpu={cpu}
+              memGiB={memGiB}
+              shell={shell}
+              node={process.version}
+              uptimeText={fmtUptime(os.uptime())}
+              uptimeSec={os.uptime()}
+              loadAvg={loadAvg}
+              readyAt={`http://${host}:3000`}
+            />
           </Reveal>
         </div>
 

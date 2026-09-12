@@ -1,5 +1,6 @@
 import Link from "next/link";
-import ThemeToggle from "@/components/theme-toggle";
+import ThemePicker from "@/components/theme-picker";
+import { SearchTrigger } from "@/components/search";
 import NavLink from "@/components/nav-link";
 import MobileMenu from "@/components/mobile-menu";
 import { site } from "@/lib/site";
@@ -23,11 +24,11 @@ export default function Header() {
           <NavLink href="/arquivo">Artigos</NavLink>
           <NavLink href="/tags">Tags</NavLink>
           <NavLink href="/sobre">Sobre</NavLink>
-          <NavLink href="/rss.xml">RSS</NavLink>
         </nav>
 
         <div className="header__actions">
-          <ThemeToggle />
+          <SearchTrigger />
+          <ThemePicker />
           <MobileMenu />
         </div>
       </div>

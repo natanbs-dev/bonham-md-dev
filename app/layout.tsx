@@ -3,10 +3,11 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import BackToTop from "@/components/back-to-top";
+import { CommandPalette } from "@/components/search";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL(site.url),
   title: {
     default: `${site.name} — blog de programação`,
     template: `%s — ${site.name}`,
@@ -45,7 +46,9 @@ export const viewport: Viewport = {
   ],
 };
 
-const themeInit = `(function(){try{var t=localStorage.getItem("theme");if(t){document.documentElement.setAttribute("data-theme",t);}else{var m=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",m);}}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();`;
+const THEMES = ["dark", "light", "gruvbox-dark", "dracula", "one-dark", "nord", "catppuccin-dark"];
+
+const themeInit = `(function(){var THEMES=${JSON.stringify(THEMES)};try{var t=localStorage.getItem("theme");if(t&&THEMES.indexOf(t)>-1){document.documentElement.setAttribute("data-theme",t);}else{var m=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",m);}}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();`;
 
 export default function RootLayout({
   children,
@@ -60,6 +63,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <BackToTop />
+        <CommandPalette />
       </body>
     </html>
   );

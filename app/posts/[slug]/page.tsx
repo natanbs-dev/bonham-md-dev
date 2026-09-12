@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllPosts, formatDate, getPost, tagToSlug } from "@/lib/posts";
+import { getAllPosts, formatDate, getPost, getPostSlugs, tagToSlug } from "@/lib/posts";
 import ReadingProgress from "@/components/reading-progress";
 import CodeCopier from "@/components/code-copier";
 
@@ -9,7 +9,11 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export const dynamic = "force-dynamic";
+export function generateStaticParams() {
+  return getPostSlugs().map((slug) => ({ slug }));
+}
+
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;

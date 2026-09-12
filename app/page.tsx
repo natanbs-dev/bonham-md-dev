@@ -5,7 +5,6 @@ import PostCard from "@/components/post-card";
 import Reveal from "@/components/reveal";
 import { site } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default function Home() {

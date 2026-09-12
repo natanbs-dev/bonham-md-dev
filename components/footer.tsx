@@ -21,7 +21,6 @@ export default function Footer() {
           <Link href="/tags">Tags</Link>
           <Link href="/sobre">Sobre</Link>
           <a href={`mailto:${site.email}`}>Contato</a>
-          <Link href="/rss.xml">RSS</Link>
         </nav>
 
         <div className="footer__meta">

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getAllPosts, formatDate } from "@/lib/posts";
 import Reveal from "@/components/reveal";
 
-export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Arquivo",
