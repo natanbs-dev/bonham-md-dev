@@ -4,6 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   output: "export",
+  basePath: "/bonham-md-dev",
   trailingSlash: true,
   /* Em modo de exportação estática os headers de segurança não se aplicam
      (não há servidor). O GitHub Pages já envia os defaults:

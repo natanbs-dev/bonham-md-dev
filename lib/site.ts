@@ -1,3 +1,5 @@
+export const basePath = "/bonham-md-dev";
+
 export const site = {
   name: "barbosa",
   author: "barbosa.md",
@@ -5,7 +7,7 @@ export const site = {
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.NODE_ENV === "production"
-      ? `https://barbosa.md`
+      ? `https://natanbs-dev.github.io${basePath}/`
       : "http://localhost:3000"),
   email: "hello@bonham.dev",
   description:

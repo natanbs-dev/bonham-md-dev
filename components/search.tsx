@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { basePath } from "@/lib/site";
 
 interface IndexPost {
   slug: string;
@@ -22,7 +23,7 @@ const TTL = 60_000;
 function getIndex(): Promise<IndexPost[]> {
   if (cachePosts && Date.now() - cacheAt < TTL) return Promise.resolve(cachePosts);
   if (!inflight) {
-    inflight = fetch("/search-index.json")
+    inflight = fetch(`${basePath}/search-index.json`)
       .then((r) => r.json())
       .then((d) => {
         cachePosts = (d.posts as IndexPost[]) ?? [];
