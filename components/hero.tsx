@@ -20,7 +20,7 @@ export default function Hero({
           <div className="hero__intro">
             <span className="hero__eyebrow">
               <span className="dot" />
-              {site.name}.dev — portfólio &amp; blog
+              {site.name}.md — portfólio &amp; blog
             </span>
 
             <h1 className="hero__title">
@@ -29,8 +29,9 @@ export default function Hero({
             </h1>
 
             <p className="hero__sub">
-              Engenheiro de software com foco em interfaces rápidas, código
-              legível e ferramentas que dão prazer de usar. Este é o meu
+              Desenvolvedor de software com foco em interfaces rápidas, código
+              legível e ferramentas de fato úteis ao entregar valor
+              ao negócio. Este é o meu
               espaço para documentar o que aprendo.
             </p>
 
@@ -76,7 +77,7 @@ export default function Hero({
                   <span className="key">lang:</span> <span className="val">TypeScript · Python</span>
                 </div>
                 <div className="terminal__line">
-                  <span className="key">foco:</span> <span className="val">front-end · produtividade</span>
+                  <span className="key">foco:</span> <span className="val">front-end · back-end</span>
                 </div>
                 <div className="terminal__line">
                   <span className="terminal__prompt">❯</span> <span className="terminal__cmd">uptime</span>

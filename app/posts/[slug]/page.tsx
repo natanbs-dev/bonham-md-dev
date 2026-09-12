@@ -58,7 +58,9 @@ export default async function PostPage({ params }: Props) {
           </div>
         </header>
 
-        <div className="post-shell">
+        <div
+          className={`post-shell${post.toc.length > 0 ? " post-shell--toc" : ""}`}
+        >
           <div className="prose">
             <div dangerouslySetInnerHTML={{ __html: post.html }} />
           </div>
